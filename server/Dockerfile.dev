@@ -1,0 +1,17 @@
+FROM node:18-alpine
+
+# Set working directory
+WORKDIR /app
+
+# Copy package files and install ALL dependencies (including dev)
+COPY package*.json ./
+RUN npm install
+
+# Copy rest of the source code
+COPY . .
+
+# Expose API port
+EXPOSE 5000
+
+# Run with nodemon
+CMD ["npm", "run", "dev"]
